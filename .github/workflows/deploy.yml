@@ -27,3 +27,4 @@ jobs:
         with:
           folder: dist/wedding-site/browser
           branch: gh-pages
+          clean: true
