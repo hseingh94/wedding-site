@@ -2,27 +2,20 @@
   
   <div *ngIf="!isUnlocked" class="unveil-screen" (click)="unlock()">
     <canvas id="particleCanvas"></canvas>
-    
     <div class="reveal-content">
       <div class="wax-seal">
-        <div class="seal-texture"></div>
         <span class="initials">H & M</span>
       </div>
-      
       <h2 class="title-names">Hussein & Maguy</h2>
       <p class="invite-text">THE CELEBRATION OF LOVE</p>
-      
       <div class="pulse-hint">TAP TO UNVEIL</div>
     </div>
   </div>
 
   <div *ngIf="isUnlocked" class="content-page fade-in">
-    
-    <div class="golden-light-overlay"></div>
-
     <div class="text-overlay">
       <p class="header-top">SAVE THE DATE</p>
-      <h1>Hussein & Maguy</h1>
+      <h1 class="main-title">Hussein & Maguy</h1>
       <p class="date-hero">01 . 09 . 2026</p>
 
       <div class="dress-code">
@@ -33,37 +26,60 @@
       </div>
 
       <div class="countdown-grid">
-        <div class="box">
-          <span class="num">{{countdown.days}}</span>
-          <span class="lab">Days</span>
-        </div>
+        <div class="box"><span class="num">{{countdown.days}}</span><span class="lab">Days</span></div>
         <div class="dot">:</div>
-        <div class="box">
-          <span class="num">{{countdown.hours}}</span>
-          <span class="lab">Hrs</span>
-        </div>
+        <div class="box"><span class="num">{{countdown.hours}}</span><span class="lab">Hrs</span></div>
         <div class="dot">:</div>
-        <div class="box">
-          <span class="num">{{countdown.minutes}}</span>
-          <span class="lab">Min</span>
-        </div>
+        <div class="box"><span class="num">{{countdown.minutes}}</span><span class="lab">Min</span></div>
         <div class="dot">:</div>
-        <div class="box">
-          <span class="num">{{countdown.seconds}}</span>
-          <span class="lab">Sec</span>
-        </div>
+        <div class="box"><span class="num">{{countdown.seconds}}</span><span class="lab">Sec</span></div>
       </div>
 
-      <a href="https://maps.google.com/?q=Ayia+Napa+Cyprus" target="_blank" class="luxury-btn">
-        AYIA NAPA • CYPRUS
-      </a>
+      <div class="action-row">
+        <button (click)="toggleRsvp()" class="luxury-btn rsvp-trigger">
+          RSVP • ATTEND CELEBRATION
+        </button>
+        <a href="https://maps.google.com" target="_blank" class="luxury-btn">
+          VIEW VENUE • AYIA NAPA
+        </a>
+      </div>
+    </div>
+
+    <div class="rsvp-panel-overlay" *ngIf="showRsvpForm" (click)="toggleRsvp()">
+      <div class="rsvp-modal" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="toggleRsvp()">✕</button>
+        <h3 class="panel-title">GUEST REGISTRATION</h3>
+        
+        <div class="guest-selector">
+          <p class="label">NUMBER OF GUESTS</p>
+          <div class="number-row">
+            <div *ngFor="let num of [1, 2, 3, 4, 5]" 
+                 class="guest-option"
+                 [class.active]="selectedGuests === num"
+                 (click)="selectGuests(num)">
+              {{num}}
+            </div>
+          </div>
+        </div>
+
+        <div class="names-container">
+          <p class="label">GUEST NAMES</p>
+          <div class="input-wrapper" *ngFor="let name of guestNames; let i = index; trackBy: trackByIndex">
+            <input type="text" [(ngModel)]="guestNames[i]" [placeholder]="'Guest ' + (i+1) + ' Full Name'" class="luxury-input">
+          </div>
+        </div>
+
+        <a [href]="getWhatsAppLink()" target="_blank" class="confirm-btn">
+           CONFIRM VIA WHATSAPP
+        </a>
+      </div>
     </div>
 
     <div class="slideshow" [ngClass]="currentAnimation">
-      <img [src]="'./' + slides[currentSlideIndex]" class="active-slide" alt="Wedding Portrait">
-      
+      <ng-container *ngFor="let slide of [slides[currentSlideIndex]]">
+        <img [src]="'./' + slide" class="active-slide" alt="Wedding Portrait">
+      </ng-container>
       <div class="overlay-vignette"></div>
     </div>
   </div>
-
 </div>
