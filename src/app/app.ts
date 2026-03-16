@@ -12,7 +12,7 @@ import confetti from 'canvas-confetti';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isUnlocked = false;
-  showRsvpForm = false; // Controls the Modal visibility
+  showRsvpForm = false; 
   currentSlideIndex = 0;
   audio = new Audio('music.mp3');
   
@@ -20,14 +20,14 @@ export class AppComponent implements OnInit, OnDestroy {
   guestNames: string[] = ['']; 
 
   slides = [
-    '1.jpg',  '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg',
+    '1.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg',
     '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg'
   ];
   
   animations = ['fade-blur', 'zoom-in', 'soft-glow', 'slide-up'];
   currentAnimation = 'fade-blur';
   countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  targetDate = new Date('2026-09-01T00:00:00').getTime();
+  targetDate = new Date('2026-09-01T19:00:00').getTime();
   
   slideInterval: any;
   timerInterval: any;
@@ -70,14 +70,26 @@ export class AppComponent implements OnInit, OnDestroy {
 
   trackByIndex(index: number) { return index; }
 
-  getWhatsAppLink() {
+  // CORRECTED POP-UP LOGIC
+  submitRsvp() {
     const phone = "96171691557"; 
-    const namesList = this.guestNames.filter(n => n.trim() !== '').join(', ');
-    const message = `Hi Hussein & Maguy! We are so happy to attend!\n\nTotal Guests: ${this.selectedGuests}\nNames: ${namesList || 'Not specified'}`;
-    return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    // Check if the first name or any names are filled
+    const filledNames = this.guestNames.filter(n => n && n.trim() !== '');
+
+    if (filledNames.length === 0) {
+      // THE POP-UP
+      alert('Please fill your name to confirm! ❤️');
+      return;
+    }
+
+    const namesList = filledNames.join(', ');
+    const message = `Hi Hussein & Maguy! We are so happy to attend!\n\nTotal Guests: ${this.selectedGuests}\nNames: ${namesList}`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, '_blank');
   }
 
-  // --- Utility ---
   startSlideshow() {
     this.slideInterval = setInterval(() => {
       this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;

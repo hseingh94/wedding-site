@@ -18,7 +18,9 @@
     .initials { font-family: 'Cinzel'; color: var(--gold); font-size: 1.1rem; }
   }
   .title-names { font-family: 'Cinzel'; color: var(--gold); letter-spacing: 5px; font-size: 1.3rem; }
-  .pulse-hint { margin-top: 30px; font-size: 0.6rem; color: var(--gold); animation: blink 2s infinite; }
+  .pulse-hint { 
+    margin-top: 35px; font-size: 1rem; font-weight: bold; color: var(--gold); animation: blink 2s infinite; 
+  }
 }
 
 /* TEXT OVERLAY */
@@ -33,104 +35,45 @@
 }
 
 .dress-code {
-  margin: 15px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-
-  .icon-group {
-    display: flex;
-    gap: 15px; // Space between dress and suit icons
-    
-    .luxury-icon {
-      width: 26px;
-      height: 26px;
-      fill: var(--gold);
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
-      transition: 0.3s;
-      
-      &:hover {
-        transform: scale(1.2);
-        filter: drop-shadow(0 0 12px var(--gold));
-      }
+  margin: 15px 0; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  .icon-group { 
+    display: flex; gap: 15px; 
+    .luxury-icon { width: 26px; height: 26px; fill: var(--gold); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6)); transition: 0.3s;
+      &:hover { transform: scale(1.2); filter: drop-shadow(0 0 12px var(--gold)); }
     }
   }
-
-  p {
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--gold);
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+  p { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); font-weight: bold; text-transform: uppercase; }
 }
 
-/* ATTENTION CUES */
 .attention-arrows {
-  display: flex; justify-content: center; gap: 25px; margin-bottom: 5px;
+  display: flex; justify-content: center; gap: 30px; margin-bottom: 10px;
   span {
-    color: var(--gold); font-size: 1.2rem; filter: drop-shadow(0 0 5px var(--gold));
+    color: var(--gold); font-size: 2.2rem; font-weight: bold; filter: drop-shadow(0 0 8px var(--gold));
     animation: floatDown 1.5s infinite ease-in-out;
     &:nth-child(2) { animation-delay: 0.2s; }
     &:nth-child(3) { animation-delay: 0.4s; }
   }
 }
 
-.attention-shake {
-  animation: subtleVibrate 4s infinite;
-}
+.attention-shake { animation: subtleVibrate 4s infinite; }
 
-/* BUTTONS */
 .action-row { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
 .luxury-btn {
   width: 260px; padding: 14px; border: 1px solid var(--gold); color: var(--gold); 
   text-decoration: none; font-size: 0.65rem; letter-spacing: 2px; 
   background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); transition: 0.3s;
-  
-  &.rsvp-trigger { 
-    background: var(--gold); color: #000; font-weight: bold; border: none; 
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-  }
+  &.rsvp-trigger { background: var(--gold); color: #000; font-weight: bold; border: none; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
 }
 
 /* RSVP MODAL */
-.rsvp-panel-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
-  z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 20px;
-}
+.rsvp-panel-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 20px; }
 .rsvp-modal {
-  background: #0a0a0a; border: 1px solid var(--gold); padding: 35px 20px;
-  width: 100%; max-width: 340px; position: relative; text-align: center;
-  animation: modalPop 0.4s ease-out;
-
+  background: #0a0a0a; border: 1px solid var(--gold); padding: 35px 20px; width: 100%; max-width: 340px; position: relative; text-align: center; animation: modalPop 0.4s ease-out;
   .close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; }
   .panel-title { font-family: 'Cinzel'; font-size: 0.9rem; color: var(--gold); letter-spacing: 3px; margin-bottom: 25px; }
-
-  .guest-selector {
-    margin-bottom: 20px;
-    .label { font-size: 0.5rem; color: var(--gold); margin-bottom: 10px; }
-    .number-row { 
-      display: flex; justify-content: center; gap: 10px; 
-      .guest-option { 
-        width: 35px; height: 35px; border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center;
-        cursor: pointer; &.active { background: var(--gold); color: #000; }
-      }
-    }
-  }
-
-  .names-container {
-    .label { font-size: 0.5rem; color: var(--gold); margin-bottom: 10px; }
-    .input-wrapper { 
-      border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 10px; 
-      .luxury-input { background: transparent; border: none; color: #fff; width: 100%; text-align: center; padding: 8px; outline: none; }
-    }
-  }
-
-  .confirm-btn {
-    display: block; background: var(--gold); color: #000; text-decoration: none; padding: 12px;
-    font-size: 0.7rem; letter-spacing: 2px; font-weight: bold; margin-top: 15px;
-  }
+  .guest-selector { margin-bottom: 20px; .label { font-size: 0.5rem; color: var(--gold); margin-bottom: 10px; } .number-row { display: flex; justify-content: center; gap: 10px; .guest-option { width: 35px; height: 35px; border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; &.active { background: var(--gold); color: #000; } } } }
+  .names-container { .label { font-size: 0.5rem; color: var(--gold); margin-bottom: 10px; } .input-wrapper { border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 10px; .luxury-input { background: transparent; border: none; color: #fff; width: 100%; text-align: center; padding: 8px; outline: none; } } }
+  .confirm-btn { display: block; background: var(--gold); color: #000; text-decoration: none; padding: 12px; font-size: 0.7rem; letter-spacing: 2px; font-weight: bold; margin-top: 15px; }
 }
 
 /* SLIDESHOW & KEYFRAMES */
@@ -144,20 +87,8 @@
   .overlay-vignette { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.9) 100%); }
 }
 
-@keyframes floatDown {
-  0%, 100% { transform: translateY(0); opacity: 0.3; }
-  50% { transform: translateY(10px); opacity: 1; }
-}
-
-@keyframes subtleVibrate {
-  0%, 90% { transform: scale(1); }
-  92% { transform: scale(1.05) rotate(1deg); }
-  94% { transform: scale(1.05) rotate(-1deg); }
-  96% { transform: scale(1.05) rotate(1deg); }
-  98% { transform: scale(1.05) rotate(-1deg); }
-  100% { transform: scale(1); }
-}
-
+@keyframes floatDown { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(10px); opacity: 1; } }
+@keyframes subtleVibrate { 0%, 90% { transform: scale(1); } 92% { transform: scale(1.05) rotate(1deg); } 94% { transform: scale(1.05) rotate(-1deg); } 96% { transform: scale(1.05) rotate(1deg); } 98% { transform: scale(1.05) rotate(-1deg); } 100% { transform: scale(1); } }
 @keyframes modalPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 @keyframes anim-fade-blur { 0% { opacity: 0; filter: blur(10px); } 100% { opacity: 0.5; filter: blur(0px); } }
 @keyframes anim-zoom-in { 0% { opacity: 0; transform: scale(1.2); } 100% { opacity: 0.5; transform: scale(1); } }
@@ -165,6 +96,7 @@
 @keyframes anim-slide-up { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 0.5; transform: translateY(0); } }
 @keyframes shine { to { background-position: 200% center; } }
 @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
 .countdown-grid { display: flex; justify-content: center; gap: 15px; margin: 20px 0; .box { .num { font-size: 1.4rem; display: block; } .lab { font-size: 0.5rem; color: var(--gold); } } }
 .fade-in { animation: fadeIn 2s forwards; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
