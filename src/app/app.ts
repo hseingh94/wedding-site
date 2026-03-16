@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
   trackByIndex(index: number) { return index; }
 
   getWhatsAppLink() {
-    const phone = "961XXXXXXXX"; 
+    const phone = "96171691557"; 
     const namesList = this.guestNames.filter(n => n.trim() !== '').join(', ');
     const message = `Hi Hussein & Maguy! We are so happy to attend!\n\nTotal Guests: ${this.selectedGuests}\nNames: ${namesList || 'Not specified'}`;
     return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
