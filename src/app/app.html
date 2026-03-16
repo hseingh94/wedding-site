@@ -8,13 +8,16 @@
         <div class="seal-texture"></div>
         <span class="initials">H & M</span>
       </div>
+      
       <h2 class="title-names">Hussein & Maguy</h2>
       <p class="invite-text">THE CELEBRATION OF LOVE</p>
-      <div class="pulse-hint">TAP TO ENTER</div>
+      
+      <div class="pulse-hint">TAP TO UNVEIL</div>
     </div>
   </div>
 
   <div *ngIf="isUnlocked" class="content-page fade-in">
+    
     <div class="golden-light-overlay"></div>
 
     <div class="text-overlay">
@@ -30,20 +33,35 @@
       </div>
 
       <div class="countdown-grid">
-        <div class="box"><span class="num">{{countdown.days}}</span><span class="lab">Days</span></div>
+        <div class="box">
+          <span class="num">{{countdown.days}}</span>
+          <span class="lab">Days</span>
+        </div>
         <div class="dot">:</div>
-        <div class="box"><span class="num">{{countdown.hours}}</span><span class="lab">Hrs</span></div>
+        <div class="box">
+          <span class="num">{{countdown.hours}}</span>
+          <span class="lab">Hrs</span>
+        </div>
         <div class="dot">:</div>
-        <div class="box"><span class="num">{{countdown.minutes}}</span><span class="lab">Min</span></div>
+        <div class="box">
+          <span class="num">{{countdown.minutes}}</span>
+          <span class="lab">Min</span>
+        </div>
         <div class="dot">:</div>
-        <div class="box"><span class="num">{{countdown.seconds}}</span><span class="lab">Sec</span></div>
+        <div class="box">
+          <span class="num">{{countdown.seconds}}</span>
+          <span class="lab">Sec</span>
+        </div>
       </div>
 
-      <a href="https://maps.google.com" target="_blank" class="luxury-btn">AYIA NAPA • CYPRUS</a>
+      <a href="https://maps.google.com/?q=Ayia+Napa+Cyprus" target="_blank" class="luxury-btn">
+        AYIA NAPA • CYPRUS
+      </a>
     </div>
 
-    <div class="slideshow">
-      <img [src]="'./' + slides[currentSlideIndex]" class="active-slide">
+    <div class="slideshow" [ngClass]="currentAnimation">
+      <img [src]="'./' + slides[currentSlideIndex]" class="active-slide" alt="Wedding Portrait">
+      
       <div class="overlay-vignette"></div>
     </div>
   </div>

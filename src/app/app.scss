@@ -17,22 +17,16 @@
     width: 110px; height: 110px; border-radius: 50%; background: var(--deep);
     margin: 0 auto 30px; display: flex; justify-content: center; align-items: center;
     border: 3px solid var(--gold); box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
-    position: relative; transition: 0.3s;
-    &:hover { transform: scale(1.1); }
+    position: relative; transition: 0.5s;
+    &:hover { transform: scale(1.1) rotate(5deg); }
     .initials { font-family: 'Cinzel'; color: var(--gold); font-size: 1.4rem; font-weight: bold; }
   }
-
   .title-names { font-family: 'Cinzel'; color: var(--gold); letter-spacing: 6px; font-size: 1.6rem; margin-bottom: 5px; }
-  .invite-text { font-size: 0.55rem; letter-spacing: 4px; opacity: 0.7; }
   .pulse-hint { margin-top: 60px; font-size: 0.5rem; letter-spacing: 2px; color: var(--gold); animation: blink 2s infinite; }
 }
 
 /* MAIN CONTENT */
-.golden-light-overlay {
-  position: absolute; inset: 0; z-index: 10; pointer-events: none;
-  background: linear-gradient(125deg, transparent 0%, rgba(212,175,55,0.08) 50%, transparent 100%);
-  background-size: 200% 200%; animation: drift 12s infinite linear;
-}
+.content-page { position: relative; height: 100%; width: 100%; }
 
 .text-overlay {
   position: relative; z-index: 100; text-align: center; padding-top: 8vh;
@@ -46,30 +40,71 @@
 .dress-code {
   margin: 15px 0; display: flex; flex-direction: column; align-items: center; gap: 5px;
   .suit-icon { width: 22px; height: 22px; fill: var(--gold); filter: drop-shadow(0 0 5px var(--gold)); }
-  p { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); }
+  p { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); font-weight: bold; }
 }
 
+/* CINEMATIC SLIDESHOW SYSTEM */
 .slideshow {
   position: absolute; inset: 0; z-index: 1; background: #000;
-  .active-slide { width: 100%; height: 100%; object-fit: cover; opacity: 0.45; transition: 0.5s; }
-  .overlay-vignette { position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #000 100%); z-index: 2; }
+  
+  .active-slide { 
+    width: 100%; height: 100%; object-fit: cover; opacity: 0;
+    transition: none; // We handle movement via Keyframes
+  }
+
+  /* Transition 1: Fade & Blur */
+  &.fade-blur .active-slide { animation: anim-fade-blur 1.5s forwards; }
+  
+  /* Transition 2: Zoom In */
+  &.zoom-in .active-slide { animation: anim-zoom-in 1.5s forwards; }
+  
+  /* Transition 3: Soft Glow Exposure */
+  &.soft-glow .active-slide { animation: anim-glow 1.5s forwards; }
+
+  /* Transition 4: Slide Up Reveal */
+  &.slide-up .active-slide { animation: anim-slide-up 1.5s forwards; }
+
+  .overlay-vignette { 
+    position: absolute; inset: 0; z-index: 2; 
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%); 
+  }
+}
+
+/* KEYFRAMES FOR TRANSITIONS */
+@keyframes anim-fade-blur {
+  0% { opacity: 0; filter: blur(15px); transform: scale(1); }
+  100% { opacity: 0.5; filter: blur(0px); transform: scale(1.05); }
+}
+
+@keyframes anim-zoom-in {
+  0% { opacity: 0; transform: scale(1.3); }
+  100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes anim-glow {
+  0% { opacity: 0; filter: brightness(3); }
+  100% { opacity: 0.5; filter: brightness(1); }
+}
+
+@keyframes anim-slide-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 0.5; transform: translateY(0); }
 }
 
 .countdown-grid {
   display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 15px;
-  .box { .num { font-size: 1.6rem; display: block; } .lab { font-size: 0.5rem; color: var(--gold); letter-spacing: 1px; } }
+  .box { .num { font-size: 1.6rem; display: block; } .lab { font-size: 0.5rem; color: var(--gold); } }
   .dot { color: var(--gold); opacity: 0.5; padding-bottom: 15px; }
 }
 
 .luxury-btn {
   display: inline-block; margin-top: 30px; padding: 12px 30px; border: 1px solid var(--gold); 
   color: var(--gold); text-decoration: none; font-size: 0.55rem; letter-spacing: 3px;
+  background: rgba(0,0,0,0.3); backdrop-filter: blur(5px);
   &:hover { background: var(--gold); color: #000; }
 }
 
-@keyframes drift { 0% { background-position: 0% 0%; } 100% { background-position: 200% 200%; } }
 @keyframes shine { to { background-position: 200% center; } }
-@keyframes breathe { 50% { transform: scale(1.05); } }
 @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 .fade-in { animation: fadeIn 2s forwards; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
