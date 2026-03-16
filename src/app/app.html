@@ -53,7 +53,7 @@
         <div class="guest-selector">
           <p class="label">NUMBER OF GUESTS</p>
           <div class="number-row">
-            <div *ngFor="let num of [1, 2, 3, 4, 5]" 
+            <div *ngFor="let num of [1, 2, 3, 4, 5,6]" 
                  class="guest-option"
                  [class.active]="selectedGuests === num"
                  (click)="selectGuests(num)">
