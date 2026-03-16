@@ -35,11 +35,19 @@
         <div class="box"><span class="num">{{countdown.seconds}}</span><span class="lab">Sec</span></div>
       </div>
 
-      <div class="action-row">
-        <button (click)="toggleRsvp()" class="luxury-btn rsvp-trigger">
+      <div class="action-row" *ngIf="!showRsvpForm">
+        
+        <div class="attention-arrows">
+          <span>↓</span>
+          <span>↓</span>
+          <span>↓</span>
+        </div>
+
+        <button (click)="toggleRsvp()" class="luxury-btn rsvp-trigger attention-shake">
           RSVP • ATTEND CELEBRATION
         </button>
-        <a href="https://maps.google.com" target="_blank" class="luxury-btn">
+        
+        <a href="https://maps.google.com" target="_blank" class="luxury-btn venue-btn">
           VIEW VENUE • AYIA NAPA
         </a>
       </div>
@@ -53,7 +61,7 @@
         <div class="guest-selector">
           <p class="label">NUMBER OF GUESTS</p>
           <div class="number-row">
-            <div *ngFor="let num of [1, 2, 3, 4, 5,6]" 
+            <div *ngFor="let num of [1, 2, 3, 4, 5]" 
                  class="guest-option"
                  [class.active]="selectedGuests === num"
                  (click)="selectGuests(num)">
