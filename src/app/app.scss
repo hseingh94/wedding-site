@@ -33,9 +33,37 @@
 }
 
 .dress-code {
-  margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;
-  .suit-icon { width: 22px; height: 22px; fill: var(--gold); }
-  p { font-size: 0.55rem; letter-spacing: 2px; color: var(--gold); }
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  .icon-group {
+    display: flex;
+    gap: 15px; // Space between dress and suit icons
+    
+    .luxury-icon {
+      width: 26px;
+      height: 26px;
+      fill: var(--gold);
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+      transition: 0.3s;
+      
+      &:hover {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 12px var(--gold));
+      }
+    }
+  }
+
+  p {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }
 
 /* ATTENTION CUES */
